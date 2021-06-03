@@ -37,6 +37,7 @@ namespace MaicoHub.Droid.Service
                 intent.SetFlags(ActivityFlags.NewTask);
                 Android.App.Application.Context.StartActivity(intent);
                 MaicoHub.App.IsCall = true;
+
             }
             catch (Exception ex)
             {

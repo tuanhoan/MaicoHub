@@ -45,6 +45,7 @@
                         Command="{Binding CallPhone}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
+               
             </StackLayout>
         </ScrollView>
     </Grid>

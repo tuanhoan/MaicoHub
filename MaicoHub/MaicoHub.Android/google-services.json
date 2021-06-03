@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "240547799814",
+    "project_id": "fcmexample-683f0",
+    "storage_bucket": "fcmexample-683f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240547799814:android:90731d8f35d67f7cd3f487",
+        "android_client_info": {
+          "package_name": "com.xamarin.fcmexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240547799814-km13clf4erulhsr0ii396pf9fu692do2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKtYXa6hi7fm3yYpbvFH_lxyFOh6lHvSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240547799814-km13clf4erulhsr0ii396pf9fu692do2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
