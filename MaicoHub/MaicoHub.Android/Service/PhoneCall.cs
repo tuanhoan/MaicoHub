@@ -21,11 +21,11 @@ namespace MaicoHub.Droid.Service
         [Obsolete]
         public void LoadFile()
         {
-            var folder = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Music/Recordings/Call Recordings";
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
+            //var folder = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Music/Recordings/Call Recordings";
+            //if (!Directory.Exists(folder))
+            //    Directory.CreateDirectory(folder);
 
-            var filePath = Directory.GetFiles(folder).Last();
+            //var filePath = Directory.GetFiles(folder).Last();
         } 
 
         public void MakeCall(string PhoneNumber)

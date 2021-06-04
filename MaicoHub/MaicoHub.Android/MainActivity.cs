@@ -7,6 +7,7 @@ using Android.OS;
 using Android.Gms.Common;
 using Firebase.Iid;
 using Android.Util;
+using Firebase.Messaging;
 
 namespace MaicoHub.Droid
 {
@@ -23,6 +24,7 @@ namespace MaicoHub.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            FirebaseMessaging.Instance.SubscribeToTopic("news");
             Log.Debug(TAG, "InstanceID token: " + FirebaseInstanceId.Instance.Token);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
