@@ -14,20 +14,25 @@ namespace MaicoHub.ViewModels
 
             var number = "900";
             Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+            //OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+            MaicoHub.App.information.phoneNumber = number;
             CallPhone = new Command(() =>
             {
                 DependencyService.Get<IPhoneCall>().MakeCall(number);
-            });
-            GetToken = new Command(() =>
+            }); 
+            Record = new Command(() =>
             {
-
+                DependencyService.Get<IPhoneCall>().StartRecorder();
             });
-
+            //Record => new Command(() =>
+            //{
+            //    DependencyService.Get<IPhoneCall>().StartRecorder();
+            //});
         }
 
         public ICommand OpenWebCommand { get; }
         public ICommand CallPhone { get; }
-        public ICommand GetToken { get; }
+        public ICommand Record { get; }
+
     }
 }
