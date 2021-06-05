@@ -1,10 +1,7 @@
-﻿using MaicoHub.Service;
-using MaicoHub.Services;
-using MaicoHub.Views;
+﻿using MaicoHub.Services;
 using MaicoHubAPI.Model;
 using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MaicoHub
 {
@@ -21,12 +18,12 @@ namespace MaicoHub
         }
 
         protected override void OnStart()
-        { 
+        {
         }
 
         protected override void OnSleep()
         {
-            
+
         }
 
         protected override void OnResume()
@@ -41,8 +38,8 @@ namespace MaicoHub
                 //GoogleDriveService driveService = new GoogleDriveService();
                 //driveService.Test();
                 //driveService.Upload(information.filePath, "1ThUOQ_eEodHm4UVMt7wp4iTzW-Aoc94x");
-                     
-                IsCall = false; 
+
+                IsCall = false;
             }
         }
     }

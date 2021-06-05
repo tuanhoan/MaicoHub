@@ -1,8 +1,5 @@
 ﻿using MaicoHub.Services;
-using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MaicoHub.ViewModels
@@ -19,7 +16,7 @@ namespace MaicoHub.ViewModels
             CallPhone = new Command(() =>
             {
                 DependencyService.Get<IPhoneCall>().MakeCall(number);
-            }); 
+            });
             Record = new Command(() =>
             {
                 DependencyService.Get<IPhoneCall>().StartRecorder();

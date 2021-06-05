@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MaicoHub.Models
+﻿namespace MaicoHub.Models
 {
     public class Item
     {

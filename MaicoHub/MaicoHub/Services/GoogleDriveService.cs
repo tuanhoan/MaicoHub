@@ -2,7 +2,6 @@
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using MaicoHub.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,11 +19,11 @@ namespace MaicoHub.Service
         protected readonly DriveService service;
         protected string root = "1ThUOQ_eEodHm4UVMt7wp4iTzW-Aoc94x";
         public GoogleDriveService()
-        { 
+        {
             using (var stream =
                 new FileStream("storage/emulated/0/Download/credentials/credentials.json", FileMode.Open, FileAccess.Read))
             {
-                string credPath = "storage/emulated/0/Download/credentials/token.json"; 
+                string credPath = "storage/emulated/0/Download/credentials/token.json";
 
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
@@ -58,7 +57,7 @@ namespace MaicoHub.Service
             request.Fields = "id";
             var file = request.Execute();
             return file.Id;
-        } 
+        }
         public async Task<string> Upload(string filePath, string folderId, string name = null)
         {
             bool isLoadComplete = false;
@@ -66,7 +65,7 @@ namespace MaicoHub.Service
 
 
             //filePath = Path.ChangeExtension(filePath, "mp3");
-             
+
             if (name == null) name = MaicoHub.App.information.phoneNumber + "_" + filePath.Split('/').Last().Split('-').Last().Split('.').First() + DateTime.Now.Second + "." + "mp3";
 
             var mimeType = "video/*";

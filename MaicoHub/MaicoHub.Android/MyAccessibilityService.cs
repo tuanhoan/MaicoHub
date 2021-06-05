@@ -2,16 +2,9 @@
 using Android.AccessibilityServices;
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
 using Android.Views.Accessibility;
-using Android.Widget;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MaicoHub.Droid
 {
@@ -53,5 +46,5 @@ namespace MaicoHub.Droid
         {
             throw new NotImplementedException();
         }
-    } 
+    }
 }

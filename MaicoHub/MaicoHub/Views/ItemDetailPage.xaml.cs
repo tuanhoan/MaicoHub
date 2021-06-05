@@ -1,5 +1,4 @@
 ﻿using MaicoHub.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace MaicoHub.Views

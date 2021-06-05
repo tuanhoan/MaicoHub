@@ -33,7 +33,7 @@ namespace MaicoHub.DataAccess
                 var request = new GraphQLRequest
                 {
                     Query = completeQueryString
-                }; 
+                };
                 var response = await graphQLHttpClient.SendMutationAsync<object>(request);
 
                 var stringResult = response.Data.ToString();
