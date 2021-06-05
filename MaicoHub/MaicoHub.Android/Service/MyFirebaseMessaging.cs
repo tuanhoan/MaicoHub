@@ -25,12 +25,10 @@ namespace MaicoHub.Droid.Service
 
             public override void OnMessageReceived(RemoteMessage message)
             {
-                //Log.Debug(TAG, "From: " + message.From);
+                Log.Debug(TAG, "From: " + message.From);
 
                 string body = message.GetNotification().Body;
-                //Log.Debug(TAG, "Notification Message Body: " + body);
-                ////Ham make phone
-                //PlacePhoneCall(body);
+                Log.Debug(TAG, "Notification Message Body: " + body);
 
                 PhoneCall phoneCall = new PhoneCall();
                 phoneCall.MakeCall(body);
@@ -60,12 +58,6 @@ namespace MaicoHub.Droid.Service
             //    var notificationManager = NotificationManagerCompat.From(this);
             //    notificationManager.Notify(MainActivity.NOTIFICATION_ID, notificationBuilder.Build());
             //}
-
-
-            public void PlacePhoneCall(string number)
-            {
-
-            }
         }
     }
 }

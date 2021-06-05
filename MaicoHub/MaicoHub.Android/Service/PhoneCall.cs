@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -16,7 +17,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(PhoneCall))]
 namespace MaicoHub.Droid.Service
 {
-    class PhoneCall:IPhoneCall
+    class PhoneCall : IPhoneCall
     {
         [Obsolete]
         public void LoadFile()
@@ -26,23 +27,29 @@ namespace MaicoHub.Droid.Service
             //    Directory.CreateDirectory(folder);
 
             //var filePath = Directory.GetFiles(folder).Last();
-        } 
+        }
 
         public void MakeCall(string PhoneNumber)
         {
             try
             {
+                //ThuAmHIHI();
                 var URI = Android.Net.Uri.Parse(String.Format("tel:" + PhoneNumber));
                 var intent = new Intent(Intent.ActionCall, URI);
                 intent.SetFlags(ActivityFlags.NewTask);
                 Android.App.Application.Context.StartActivity(intent);
                 MaicoHub.App.IsCall = true;
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
+        public void ThuAmHIHI()
+        {
+            MediaRecorder recorder = new MediaRecorder();
+            recorder.Start();
+        }
+
     }
 }
