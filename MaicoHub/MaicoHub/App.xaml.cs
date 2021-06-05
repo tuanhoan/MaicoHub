@@ -21,11 +21,12 @@ namespace MaicoHub
         }
 
         protected override void OnStart()
-        {
+        { 
         }
 
         protected override void OnSleep()
         {
+            
         }
 
         protected override void OnResume()
@@ -33,13 +34,13 @@ namespace MaicoHub
             if (IsCall == true)
             {
                 Console.WriteLine("Vô");
-                DependencyService.Get<IPhoneCall>().LoadFile();
-                GoogleDriveService googleDriveService = new GoogleDriveService();
-                googleDriveService.Test();
+                //DependencyService.Get<IPhoneCall>().LoadFile();
+                //GoogleDriveService googleDriveService = new GoogleDriveService();
+                //googleDriveService.Test();
 
-                GoogleDriveService driveService = new GoogleDriveService();
-                driveService.Test();
-                driveService.Upload(information.filePath, "1ThUOQ_eEodHm4UVMt7wp4iTzW-Aoc94x");
+                //GoogleDriveService driveService = new GoogleDriveService();
+                //driveService.Test();
+                //driveService.Upload(information.filePath, "1ThUOQ_eEodHm4UVMt7wp4iTzW-Aoc94x");
                      
                 IsCall = false; 
             }

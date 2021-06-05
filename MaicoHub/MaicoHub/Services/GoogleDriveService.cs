@@ -22,9 +22,9 @@ namespace MaicoHub.Service
         public GoogleDriveService()
         { 
             using (var stream =
-                new FileStream("storage/emulated/0/Download/credentials.json", FileMode.Open, FileAccess.Read))
+                new FileStream("storage/emulated/0/Download/credentials/credentials.json", FileMode.Open, FileAccess.Read))
             {
-                string credPath = "storage/emulated/0/Download/token.json"; 
+                string credPath = "storage/emulated/0/Download/credentials/token.json"; 
 
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
@@ -62,11 +62,14 @@ namespace MaicoHub.Service
         public async Task<string> Upload(string filePath, string folderId, string name = null)
         {
             bool isLoadComplete = false;
-            Random rnd = new Random(); 
+            Random rnd = new Random();
 
-            if (name == null) name = filePath;
 
-            var mimeType = "image/*";
+            //filePath = Path.ChangeExtension(filePath, "mp3");
+             
+            if (name == null) name = MaicoHub.App.information.phoneNumber + "_" + filePath.Split('/').Last().Split('-').Last().Split('.').First() + DateTime.Now.Second + "." + "mp3";
+
+            var mimeType = "video/*";
 
             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
             {

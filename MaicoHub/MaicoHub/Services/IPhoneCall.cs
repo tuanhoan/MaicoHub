@@ -7,7 +7,8 @@ namespace MaicoHub.Services
 {
     public interface IPhoneCall
     {
-        void MakeCall(string PhoneNumber);
-        Task LoadFile();
+        Task MakeCall(string PhoneNumber);
+        void LoadFile();
+        Task StartRecorder();
     }
 }

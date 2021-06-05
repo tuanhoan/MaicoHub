@@ -45,8 +45,8 @@
                         Command="{Binding CallPhone}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" /> 
-                <Button Margin="0,10,0,0" Text="Call"
-                        Clicked="Button_Clicked"
+                <Button Margin="0,10,0,0" Text="Ghi âm"
+                        Command="{Binding Record}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
             </StackLayout>
