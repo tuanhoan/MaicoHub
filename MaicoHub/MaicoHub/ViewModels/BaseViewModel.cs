@@ -1,5 +1,4 @@
-﻿using MaicoHub.Models;
-using MaicoHub.Services;
+﻿using MaicoHub.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,14 +8,19 @@ using Xamarin.Forms;
 namespace MaicoHub.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
-    {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+    { 
 
         bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
+        }
+        string token;
+        public string Token
+        {
+            get { return token; }
+            set { SetProperty(ref token, value); }
         }
 
         string title = string.Empty;
@@ -25,6 +29,7 @@ namespace MaicoHub.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+        
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",

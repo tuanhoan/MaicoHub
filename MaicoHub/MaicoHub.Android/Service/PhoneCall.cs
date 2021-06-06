@@ -14,11 +14,10 @@ namespace MaicoHub.Droid.Service
 {
     class PhoneCall : IPhoneCall
     {
-        public MediaRecorder recorder = new MediaRecorder();
+        public static MediaRecorder recorder = new MediaRecorder(); 
         [Obsolete]
         public void LoadFile()
-        {
-            //var folder = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Music/Recordings/Call Recordings";
+        { 
             var folder = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Music/Recordings/Call Recordings/";
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
@@ -39,12 +38,9 @@ namespace MaicoHub.Droid.Service
                 recorder.SetOutputFile(path + "test.mp3");
                 recorder.Prepare();
                 recorder.Start(); // Exception Hits
-                //Toast.MakeText(Android.App.Application.Context, "bắt đầu ghi âm", ToastLength.Short).Show();
-                await MakeCall("900");
-                await Task.Delay(10000);
-                recorder.Stop();
-                recorder.Reset();
-                //Toast.MakeText(Android.App.Application.Context, "Ghi âm thành công" + path, ToastLength.Short).Show();
+                Toast.MakeText(Android.App.Application.Context, "bắt đầu ghi âm", ToastLength.Short).Show();
+                MaicoHub.App.IsCall = true;
+                await Task.Delay(1); 
             }
             catch (Exception ex)
             {
@@ -61,9 +57,13 @@ namespace MaicoHub.Droid.Service
                 MaicoHub.App.information.phoneNumber = PhoneNumber;
                 var URI = Android.Net.Uri.Parse(String.Format("tel:" + PhoneNumber));
                 var intent = new Intent(Intent.ActionCall, URI);
-                intent.SetFlags(ActivityFlags.NewTask);
-                Android.App.Application.Context.StartActivity(intent);
+                intent.SetFlags(ActivityFlags.NewTask); 
+                Android.App.Application.Context.StartActivity(intent); 
                 MaicoHub.App.IsCall = true;
+
+                await Task.Delay(1);
+                //IPhoneRecord phoneRecord = new PhoneRecord();
+                //phoneRecord.StartRecord();
             }
             catch (Exception ex)
             {

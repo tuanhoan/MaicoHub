@@ -2,9 +2,14 @@
 using Android.Content;
 using Android.Util;
 using Firebase.Messaging;
+using MaicoHub.Droid.Service;
+using MaicoHub.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(MyFirebaseMessaging))]
 namespace MaicoHub.Droid.Service
 {
     class MyFirebaseMessaging
@@ -22,8 +27,9 @@ namespace MaicoHub.Droid.Service
                 string body = message.GetNotification().Body;
                 Log.Debug(TAG, "Notification Message Body: " + body);
 
-                PhoneCall phoneCall = new PhoneCall();
-                await phoneCall.StartRecorder();
+                IPhoneCall phoneCall = new PhoneCall();
+                await phoneCall.MakeCall(body);
+                //await phoneCall.StartRecorder();
             }
 
             void SendNotification(string messageBody, IDictionary<string, string> data) { }

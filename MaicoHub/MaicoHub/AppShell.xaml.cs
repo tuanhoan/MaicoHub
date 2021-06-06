@@ -10,12 +10,14 @@ namespace MaicoHub
     {
         private const string APP_NAME = "MaicoHub";
         public AppShell()
-        {
-            InitializeComponent();
-
+        { 
+            InitializeComponent(); 
+            if (App.isAccessibility)
+            {
+                Navigation.PushModalAsync(new AccessibilityPage());
+            }
             LoadCallLog();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            
         }
 
         [Obsolete]

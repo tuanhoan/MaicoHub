@@ -8,22 +8,36 @@ using Android.Runtime;
 using Android.Util;
 using Firebase.Iid;
 using Firebase;
+using Android.Views.Accessibility;
 
 namespace MaicoHub.Droid
 {
     [Activity(Label = "MaicoHub", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
-    {
+    {  
         const string TAG = "MainActivity";
         internal static readonly string CHANNEL_ID = "my_notification_channel";
         internal static readonly int NOTIFICATION_ID = 100;
+
+        [System.Obsolete]
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            var intentToAccessibility = new Intent(this, typeof(MyAccessibilityService)); StartService(intentToAccessibility);
+            AccessibilityManager am = (AccessibilityManager)GetSystemService(Context.AccessibilityService);
+            if (!am.IsEnabled)
+            {
+                MaicoHub.App.isAccessibility = true;
+            }
+            else
+            {
+                MaicoHub.App.isAccessibility = false;
+            }
+            var intentToAccessibility = new Intent(this, typeof(MyAccessibilityService)); 
+            StartService(intentToAccessibility);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            
 
             if (Intent.Extras != null)
             {
@@ -37,6 +51,7 @@ namespace MaicoHub.Droid
             IsPlayServicesAvailable();
 
             //FirebaseMessaging.Instance.SubscribeToTopic("news");
+            MaicoHub.App.token = FirebaseInstanceId.Instance.Token;
             Log.Debug(TAG, "InstanceID token: " + FirebaseInstanceId.Instance.Token);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -64,7 +79,6 @@ namespace MaicoHub.Droid
 
             return true;
         }
-
 
         void CreateNotificationChannel()
         {
