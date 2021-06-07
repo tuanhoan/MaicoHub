@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MaicoHub.Services
 {
     public interface IPhoneRecord
     {
         void StartRecord();
-        void StopRecord(); 
+        void StopRecord();
+        Task StartRecordZalo();
     }
 }

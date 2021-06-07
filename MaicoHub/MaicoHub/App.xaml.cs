@@ -11,11 +11,12 @@ namespace MaicoHub
         public static Information information = new Information();
         public static string token = null;
         public static bool isAccessibility = false;
-        IPhoneRecord phoneRecord = DependencyService.Get<IPhoneRecord>();
+        public static IPhoneRecord phoneRecord;
+
         public App()
         {
             InitializeComponent();
-             
+            phoneRecord = DependencyService.Get<IPhoneRecord>();
             MainPage = new AppShell(); 
         }
 
@@ -25,20 +26,20 @@ namespace MaicoHub
 
         protected override void OnSleep()
         {
-            if(IsCall)
-            {
-                phoneRecord.StartRecord();
-            }
+            //if(IsCall)
+            //{
+            //    phoneRecord.StartRecord();
+            //}
         }
 
         protected override void OnResume()
         {
-            if (IsCall == true)
-            {
-                phoneRecord.StopRecord();
+            //if (IsCall == true)
+            //{
+            //    phoneRecord.StopRecord();
 
-                IsCall = false;
-            }
+            //    IsCall = false;
+            //}
         }
     }
 }

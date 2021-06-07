@@ -21,7 +21,7 @@ namespace MaicoHub.ViewModels
             });
             Record = new Command(() =>
             {
-                DependencyService.Get<IPhoneCall>().StartRecorder();
+                DependencyService.Get<IPhoneRecord>().StartRecordZalo();
             });
             CopyToken = new Command(() =>
             {
