@@ -30,11 +30,13 @@ namespace MaicoHub.Droid.Service
             {
                 recorder.Reset();
                 recorder.SetAudioSource(AudioSource.VoiceRecognition);
-                recorder.SetOutputFormat(OutputFormat.Default);
-                recorder.SetAudioEncoder(AudioEncoder.Default);
+                recorder.SetOutputFormat(OutputFormat.ThreeGpp);
+                recorder.SetAudioEncoder(AudioEncoder.AmrNb); 
+                //recorder.SetAudioSamplingRate(8000);
+                //recorder.SetAudioEncodingBitRate(12200); 
                 recorder.SetOutputFile(path + "test.mp3");
                 recorder.Prepare();
-                recorder.Start(); // Exception Hits
+                recorder.Start(); // Exception Hits 
                 Toast.MakeText(Android.App.Application.Context, "bắt đầu ghi âm", ToastLength.Short).Show(); 
             }
             catch (Exception ex)
@@ -46,21 +48,25 @@ namespace MaicoHub.Droid.Service
 
         [Obsolete]
         public async Task StartRecordZalo()
-        {
+        { 
             try
             {
                 recorder.Reset();
                 recorder.SetAudioSource(AudioSource.VoiceRecognition);
-                recorder.SetOutputFormat(OutputFormat.Default);
-                recorder.SetAudioEncoder(AudioEncoder.Default);
-                recorder.SetOutputFile(path + "zalo.mp3");
+                recorder.SetOutputFormat(OutputFormat.ThreeGpp);
+                recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+                recorder.SetOutputFile(path + "zalo.wav");
+                recorder.SetAudioSamplingRate(8000);
+                recorder.SetAudioEncodingBitRate(12200);
                 recorder.Prepare();
                 recorder.Start(); // Exception Hits
+                MaicoHub.App.IsCall = true;
                 Toast.MakeText(Android.App.Application.Context, "bắt đầu ghi âm", ToastLength.Short).Show();
-                await Task.Delay(30000);
-                recorder.Stop();
-                recorder.Reset();
-                Toast.MakeText(Android.App.Application.Context, "Ghi âm thành công" + path, ToastLength.Short).Show();
+                Console.WriteLine("Recorrd: " + isVoip(Android.App.Application.Context));
+                //await Task.Delay(5000);
+                //recorder.Stop();
+                //recorder.Reset();
+                //Toast.MakeText(Android.App.Application.Context, "Ghi âm thành công" + path, ToastLength.Short).Show();
             }
             catch (Exception ex)
             {
@@ -72,9 +78,30 @@ namespace MaicoHub.Droid.Service
         [Obsolete]
         public void StopRecord()
         {
-            recorder.Stop();
-            recorder.Reset();
-            Toast.MakeText(Android.App.Application.Context, "Ghi âm thành công" + path, ToastLength.Short).Show();
+            try
+            { 
+                recorder.Stop();
+                recorder.Reset();
+                Toast.MakeText(Android.App.Application.Context, "Ghi âm thành công" + path, ToastLength.Short).Show();
+            }
+            catch
+            {
+
+            }
+        }
+
+        public bool isVoip(Context context)
+        {
+            //System.Threading.Thread.Sleep(1000);
+             AudioManager manager = (AudioManager)context.GetSystemService(Context.AudioService);
+            if (manager.Mode == Mode.InCommunication)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

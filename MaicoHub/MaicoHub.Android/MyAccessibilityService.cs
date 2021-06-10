@@ -2,9 +2,13 @@
 using Android.AccessibilityServices;
 using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.Util;
 using Android.Views.Accessibility;
+using MaicoHub.Droid.Service;
+using MaicoHub.Services;
 using System;
+using System.Threading.Tasks;
 
 namespace MaicoHub.Droid
 {
@@ -30,6 +34,23 @@ namespace MaicoHub.Droid
 
         public override void OnAccessibilityEvent(Android.Views.Accessibility.AccessibilityEvent e)
         {
+            Console.WriteLine(MaicoHub.App.phoneRecord.isVoip(Android.App.Application.Context));
+            if (e.PackageName == "com.zing.zalo")
+            {
+                System.Threading.Thread.Sleep(2000);
+                if (MaicoHub.App.phoneRecord.isVoip(Android.App.Application.Context))
+                {
+                    MaicoHub.App.phoneRecord.StartRecord();
+
+                    Console.WriteLine("Run: " + MaicoHub.App.phoneRecord.isVoip(Android.App.Application.Context));
+                    while (MaicoHub.App.phoneRecord.isVoip(Android.App.Application.Context))
+                    {
+                        Console.WriteLine("Đang ghi âm");
+                    }
+                    MaicoHub.App.phoneRecord.StopRecord();
+
+                }
+            }  
             Console.WriteLine("***** OnAccessibilityEvent *****");
         }
 
@@ -45,6 +66,18 @@ namespace MaicoHub.Droid
         public override void OnInterrupt()
         {
             throw new NotImplementedException();
+        }
+        public bool isVoip(Context context)
+        {
+            AudioManager manager = (AudioManager)context.GetSystemService(Context.AudioService);
+            if(manager.Mode == Mode.InCommunication)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

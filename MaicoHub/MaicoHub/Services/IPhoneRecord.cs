@@ -1,4 +1,5 @@
-﻿using Android.Media;
+﻿using Android.Content;
+using Android.Media;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,6 @@ namespace MaicoHub.Services
         void StartRecord();
         void StopRecord();
         Task StartRecordZalo();
+        bool isVoip(Context context);
     }
 }
